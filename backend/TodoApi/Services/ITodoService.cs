@@ -1,8 +1,8 @@
 ﻿using TodoApi.Models;
 
-namespace TodoApi.Repositories;
+namespace TodoApi.Services;
 
-public interface ITodoRepository
+public interface ITodoService
 {
     TodoTask CreateTodoTask(TodoTask todoTask);
     List<TodoTask> GetTodoTasks();

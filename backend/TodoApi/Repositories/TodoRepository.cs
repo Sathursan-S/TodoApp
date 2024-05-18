@@ -26,7 +26,7 @@ public class TodoRepository : ITodoRepository
         }
     }
 
-    public List<TodoTask> CetTodoTasks()
+    public List<TodoTask> GetTodoTasks()
     {
         try
         {
