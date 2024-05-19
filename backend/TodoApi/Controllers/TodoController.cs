@@ -81,4 +81,18 @@ public class TodoController : ControllerBase
             return BadRequest(e.Message);
         }
     }
+    
+    [HttpPost("{id}/complete")]
+    public ActionResult CompleteTodoTask(int id)
+    {
+        try
+        {
+            _todoService.CompleteTodoTask(id);
+            return Ok();
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }

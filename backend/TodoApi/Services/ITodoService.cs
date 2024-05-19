@@ -10,4 +10,5 @@ public interface ITodoService
     TodoTask GetTodoTask(int id);
     TodoTask UpdateTodoTask(int id, TodoTask todoTask);
     void DeleteTodoTask(int id);
+    void CompleteTodoTask(int id);
 }

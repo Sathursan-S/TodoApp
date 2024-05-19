@@ -76,4 +76,18 @@ public class TodoService : ITodoService
             throw new Exception("Error deleting task" + e.Message);
         }
     }
+    
+    public void CompleteTodoTask(int id)
+    {
+        try
+        {
+            TodoTask todoTask = _todoRepository.GetTodoTask(id);
+            todoTask.IsCompleted = true;
+            _todoRepository.UpdateTodoTask(id, todoTask);
+        }
+        catch (Exception e)
+        {
+            throw new Exception("Error completing task" + e.Message);
+        }
+    }
 }

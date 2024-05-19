@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import TaskForm from "./components/TaskForm";
+import TodoList from "./components/TodoList";
+import { TodoTask, Priority } from './types/Todo';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App: React.FC = () => {
+  const [todos, setTodos] = useState<TodoTask[]>([
+    { id: 1, title: 'Task 1', description: 'Description 1', isCompleted: false, createdAt: new Date(), priority: Priority.LOW },
+    { id: 2, title: 'Task 2', description: 'Description 2', isCompleted: true, createdAt: new Date(), priority: Priority.MEDIUM },
+    { id: 3, title: 'Task 3', description: 'Description 3', isCompleted: false, createdAt: new Date(), priority: Priority.HIGH },
+  ]);
+
+  const handleToggleComplete = (id: number) => {
+    setTodos(todos.map(todo =>
+      todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+    ));
+  };
+
+  const handleDelete = (id: number) => {
+    setTodos(todos.filter(todo => todo.id !== id));
+  };
+
+  const handleEdit = (id: number) => {
+    // TODO: Implement edit functionality
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-4">Todo App</h1>
+      <TaskForm />
+      <TodoList 
+        todos={todos}
+        onToggleComplete={handleToggleComplete}
+        onDelete={handleDelete}
+        onEdit={handleEdit}
+      />
+    </div>
+  );
+};
 
-export default App
+export default App;
+
