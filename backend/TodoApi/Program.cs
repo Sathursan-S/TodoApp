@@ -1,12 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using TodoApi.Data;
+using TodoApi.Models.Mapper;
 using TodoApi.Repositories;
 using TodoApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+builder.Services.AddAutoMapper(typeof(MapperProfile));
 
 builder.Services.AddDbContext<TodoDbContext>(options =>
 {

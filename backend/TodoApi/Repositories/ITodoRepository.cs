@@ -6,7 +6,7 @@ public interface ITodoRepository
 {
     TodoTask CreateTodoTask(TodoTask todoTask);
     List<TodoTask> GetTodoTasks();
-    TodoTask GetTodoTask(string id);
-    TodoTask UpdateTodoTask(string id, TodoTask todoTask);
-    void DeleteTodoTask(string id);
+    TodoTask GetTodoTask(int id);
+    TodoTask UpdateTodoTask(int id, TodoTask todoTask);
+    void DeleteTodoTask(int id);
 }

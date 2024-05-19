@@ -1,4 +1,6 @@
-﻿using TodoApi.Models;
+﻿using AutoMapper;
+using TodoApi.Models;
+using TodoApi.Models.Dto;
 using TodoApi.Repositories;
 
 namespace TodoApi.Services;
@@ -6,16 +8,19 @@ namespace TodoApi.Services;
 public class TodoService : ITodoService
 {
     private readonly ITodoRepository _todoRepository;
+    private readonly IMapper _mapper;
     
-    public TodoService(ITodoRepository todoRepository)
+    public TodoService(ITodoRepository todoRepository, IMapper mapper)
     {
         _todoRepository = todoRepository;
+        _mapper = mapper;
     }
     
-    public TodoTask CreateTodoTask(TodoTask todoTask)
+    public TodoTask CreateTodoTask(TaskCreateRequest taskCreateRequest)
     {
         try
         {
+            TodoTask todoTask = _mapper.Map<TodoTask>(taskCreateRequest);
             return _todoRepository.CreateTodoTask(todoTask);
         }
         catch (Exception e)
@@ -36,7 +41,7 @@ public class TodoService : ITodoService
         }
     }
 
-    public TodoTask GetTodoTask(string id)
+    public TodoTask GetTodoTask(int id)
     {
         try
         {
@@ -48,7 +53,7 @@ public class TodoService : ITodoService
         }
     }
 
-    public TodoTask UpdateTodoTask(string id, TodoTask todoTask)
+    public TodoTask UpdateTodoTask(int id, TodoTask todoTask)
     {
         try
         {
@@ -60,7 +65,7 @@ public class TodoService : ITodoService
         }
     }
 
-    public void DeleteTodoTask(string id)
+    public void DeleteTodoTask(int id)
     {
         try
         {

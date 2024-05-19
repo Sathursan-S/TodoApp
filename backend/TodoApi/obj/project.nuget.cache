@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "PvNeW5x8hVba0uoGCqRVNK0+JFnVkkKQ4Gnwv2Itl9NDqAK0qXi2oC9IcE/kQyT+RKGECw+2aU3OoGsm4atwxQ==",
+  "dgSpecHash": "oDBQUCTULZMYXTn5aGQ3qZ15mi99H5WSRe6asV2UZEABBxYbeRaKpDl+KKbVDBxRvpVCZShvjNdf4El8Kuukdg==",
   "success": true,
   "projectFilePath": "D:\\Projects_Test\\Projects\\TodoApp\\backend\\TodoApi\\TodoApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\sathu\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\sathu\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\sathu\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\sathu\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.4\\microsoft.aspnetcore.openapi.8.0.4.nupkg.sha512",
     "C:\\Users\\sathu\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
@@ -12,6 +14,7 @@
     "C:\\Users\\sathu\\.nuget\\packages\\microsoft.codeanalysis.csharp\\4.5.0\\microsoft.codeanalysis.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\sathu\\.nuget\\packages\\microsoft.codeanalysis.csharp.workspaces\\4.5.0\\microsoft.codeanalysis.csharp.workspaces.4.5.0.nupkg.sha512",
     "C:\\Users\\sathu\\.nuget\\packages\\microsoft.codeanalysis.workspaces.common\\4.5.0\\microsoft.codeanalysis.workspaces.common.4.5.0.nupkg.sha512",
+    "C:\\Users\\sathu\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\sathu\\.nuget\\packages\\microsoft.data.sqlite.core\\8.0.5\\microsoft.data.sqlite.core.8.0.5.nupkg.sha512",
     "C:\\Users\\sathu\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.5\\microsoft.entityframeworkcore.8.0.5.nupkg.sha512",
     "C:\\Users\\sathu\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.5\\microsoft.entityframeworkcore.abstractions.8.0.5.nupkg.sha512",

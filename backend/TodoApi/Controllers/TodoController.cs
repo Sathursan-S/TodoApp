@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TodoApi.Models;
+using TodoApi.Models.Dto;
 using TodoApi.Services;
 
 namespace TodoApi.Controllers;
@@ -16,11 +17,11 @@ public class TodoController : ControllerBase
     }
     
     [HttpPost]
-    public ActionResult<TodoTask> CreateTodoTask([FromBody] TodoTask todoTask)
+    public ActionResult<TodoTask> CreateTodoTask([FromBody] TaskCreateRequest createTodoRequest)
     {
         try
         {
-            return _todoService.CreateTodoTask(todoTask);
+            return _todoService.CreateTodoTask(createTodoRequest);
         }
         catch (Exception e)
         {
@@ -42,7 +43,7 @@ public class TodoController : ControllerBase
     }
     
     [HttpGet("{id}")]
-    public ActionResult<TodoTask> GetTodoTask(string id)
+    public ActionResult<TodoTask> GetTodoTask(int id)
     {
         try
         {
@@ -55,7 +56,7 @@ public class TodoController : ControllerBase
     }
     
     [HttpPut("{id}")]
-    public ActionResult<TodoTask> UpdateTodoTask(string id, [FromBody] TodoTask todoTask)
+    public ActionResult<TodoTask> UpdateTodoTask(int id, [FromBody] TodoTask todoTask)
     {
         try
         {
@@ -68,7 +69,7 @@ public class TodoController : ControllerBase
     }
     
     [HttpDelete("{id}")]
-    public ActionResult DeleteTodoTask(string id)
+    public ActionResult DeleteTodoTask(int id)
     {
         try
         {

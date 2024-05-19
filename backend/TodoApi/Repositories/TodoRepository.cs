@@ -30,7 +30,7 @@ public class TodoRepository : ITodoRepository
     {
         try
         {
-            return _context.Tasks.ToList();
+            return _context.Tasks.OrderBy(t=>t.CreatedAt).ToList();
         }
         catch (Exception e)
         {
@@ -38,9 +38,9 @@ public class TodoRepository : ITodoRepository
         }
     }
 
-    public TodoTask GetTodoTask(string id)
+    public TodoTask GetTodoTask(int id)
     {
-        TodoTask todoTask = _context.Tasks.Find(id);
+        TodoTask? todoTask = _context.Tasks.Find(id);
         if (todoTask == null)
         {
             throw new Exception("Task not found");
@@ -48,9 +48,9 @@ public class TodoRepository : ITodoRepository
         return todoTask;
     }
 
-    public TodoTask UpdateTodoTask(string id, TodoTask todoTask)
+    public TodoTask UpdateTodoTask(int id, TodoTask todoTask)
     {
-        TodoTask task = _context.Tasks.Find(id);
+        TodoTask? task = _context.Tasks.Find(id);
         if (task == null)
         {
             throw new Exception("Task not found");
@@ -63,14 +63,21 @@ public class TodoRepository : ITodoRepository
         return task;
     }
 
-    public void DeleteTodoTask(string id)
+    public void DeleteTodoTask(int id)
     {
-        TodoTask task = _context.Tasks.Find(id);
+        TodoTask? task = _context.Tasks.Find(id);
         if (task == null)
         {
             throw new Exception("Task not found");
         }
-        _context.Tasks.Remove(task);
-        _context.SaveChanges();
+        try 
+        {
+            _context.Tasks.Remove(task);
+            _context.SaveChanges();
+        }
+        catch (Exception e)
+        {
+            throw new Exception(e.Message);
+        }
     }
 }
