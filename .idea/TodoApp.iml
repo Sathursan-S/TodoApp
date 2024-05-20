@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.idea/.idea.TodoApp/.idea/httpRequests" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/TodoApi/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/TodoApi/obj/Debug/net8.0/ref" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/TodoApi/obj/Debug/net8.0/refint" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/TodoApi/obj/Debug/net8.0/staticwebassets" />
+      <excludeFolder url="file://$MODULE_DIR$/frontend/todo-app/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/frontend/todo-app/.vite" />
+      <excludeFolder url="file://$MODULE_DIR$/frontend/todo-app/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/.vs/sd" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
