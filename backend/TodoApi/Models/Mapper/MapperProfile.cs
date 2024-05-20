@@ -7,6 +7,6 @@ public class MapperProfile : Profile
 {
     public MapperProfile()
     {
-        CreateMap<TaskCreateRequest, TodoTask>();
+        CreateMap<CreateTaskRequest, TodoTask>();
     }
 }

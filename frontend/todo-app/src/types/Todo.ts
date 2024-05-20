@@ -8,9 +8,9 @@ export interface TodoTask {
 }
 
 export enum Priority {
-  LOW = "LOW",
-  MEDIUM = "MEDIUM",
-  HIGH = "HIGH",
+  LOW = 0,
+  MEDIUM = 1,
+  HIGH = 2,
 }
 
 export interface TodoCreateRequest {
@@ -28,7 +28,12 @@ export interface TodoListProps {
 
 export interface TodoItemProps {
   todo: TodoTask;
-  onEdit: () => void;
-  onDelete: () => void;
-  onToggleComplete: () => void;
 }
+
+export const mapTodoTaskToTodoCreateRequest = (todoTask: TodoTask): TodoCreateRequest => {
+  return {
+    title: todoTask.title,
+    description: todoTask.description,
+    priority: todoTask.priority,
+  };
+};

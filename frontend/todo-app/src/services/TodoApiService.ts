@@ -1,33 +1,74 @@
 import axios from "axios";
-import type { TodoCreateRequest, TodoTask } from "../types/Todo";
+import {useQuery, useMutation, useQueryClient} from 'react-query';
+import {mapTodoTaskToTodoCreateRequest, TodoCreateRequest, TodoTask} from "../types/Todo";
 
-const api = axios.create({ baseURL: 'http://localhost:3001' });
+const api = axios.create({baseURL: 'https://localhost:44320/api/v1'});
 
-export const createTodoTask = async (todoTask : TodoCreateRequest) : Promise<TodoTask> => {
-    const response = await api.post<TodoTask>('api/v1/Todo', todoTask);
-    return response.data;
-} 
-
-export const getTodoTasks = async () : Promise<TodoTask[]> => {
-    const response = await api.get<TodoTask[]>('api/v1/Todo');
+export const createTodoTask = async (todoTask: TodoCreateRequest): Promise<TodoTask> => {
+    const response = await api.post<TodoTask>('/Todo', todoTask);
     return response.data;
 }
 
-export const getTodoTaskById = async (id : number) : Promise<TodoTask> => {
-    const response = await api.get<TodoTask>(`api/v1/Todo/${id}`);
+export const getTodoTasks = async (): Promise<TodoTask[]> => {
+    const response = await api.get<TodoTask[]>('/Todo');
     return response.data;
 }
 
-export const updateTodoTask = async (todoTask : TodoTask) : Promise<TodoTask> => {
-    const response = await api.put<TodoTask>(`api/v1/Todo/${todoTask.id}`, todoTask);
+export const updateTodoTask = async (todoTask: TodoTask): Promise<TodoTask> => {
+    const response = await api.put<TodoTask>(`/Todo/${todoTask.id}`, mapTodoTaskToTodoCreateRequest(todoTask));
     return response.data;
 }
 
-export const deleteTodoTask = async (id : number) : Promise<void> => {
-    await api.delete(`api/v1/Todo/${id}`);
+export const deleteTodoTask = async (id: number): Promise<void> => {
+    await api.delete(`/Todo/${id}`);
 }
 
-export const completeTodoTask = async (id : number) : Promise<TodoTask> => {
-    const response = await api.put<TodoTask>(`api/v1/Todo/${id}/complete`);
-    return response.data;
+export const completeTodoTask = async (id: number): Promise<void> => {
+    await api.put(`/Todo/${id}/complete`);
 }
+
+export const useCreateTodoTask = () => {
+    const queryClient = useQueryClient();
+    return useMutation(createTodoTask, {
+        onSuccess: () => {
+            queryClient.invalidateQueries('todos');
+        },
+    });
+};
+
+export const useGetTodoTasks = () => {
+    return useQuery('todos', getTodoTasks);
+};
+
+export const useUpdateTodoTask = () => {
+    const queryClient = useQueryClient();
+    return useMutation(updateTodoTask, {
+        onSuccess: () => {
+            queryClient.invalidateQueries('todos');
+        },
+    });
+};
+
+export const useDeleteTodoTask = () => {
+    const queryClient = useQueryClient();
+    return useMutation(deleteTodoTask, {
+        onSuccess: () => {
+            queryClient.invalidateQueries('todos');
+        },
+        onError: (error) => {
+            console.error(error);
+        }
+    });
+};
+
+export const useCompleteTodoTask = () => {
+    const queryClient = useQueryClient();
+    return useMutation(completeTodoTask, {
+        onSuccess: () => {
+            queryClient.invalidateQueries('todos');
+        },
+        onError: (error) => {
+            console.error(error);
+        }
+    });
+};

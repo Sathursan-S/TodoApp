@@ -17,11 +17,11 @@ public class TodoController : ControllerBase
     }
     
     [HttpPost]
-    public ActionResult<TodoTask> CreateTodoTask([FromBody] TaskCreateRequest createTodoRequest)
+    public ActionResult<TodoTask> CreateTodoTask([FromBody] CreateTaskRequest todoRequest)
     {
         try
         {
-            return _todoService.CreateTodoTask(createTodoRequest);
+            return _todoService.CreateTodoTask(todoRequest);
         }
         catch (Exception e)
         {
@@ -56,11 +56,11 @@ public class TodoController : ControllerBase
     }
     
     [HttpPut("{id}")]
-    public ActionResult<TodoTask> UpdateTodoTask(int id, [FromBody] TodoTask todoTask)
+    public ActionResult<TodoTask> UpdateTodoTask(int id, [FromBody] CreateTaskRequest createTaskRequest)
     {
         try
         {
-            return _todoService.UpdateTodoTask(id, todoTask);
+            return _todoService.UpdateTodoTask(id, createTaskRequest);
         }
         catch (Exception e)
         {
@@ -82,7 +82,7 @@ public class TodoController : ControllerBase
         }
     }
     
-    [HttpPost("{id}/complete")]
+    [HttpPut("{id}/complete")]
     public ActionResult CompleteTodoTask(int id)
     {
         try

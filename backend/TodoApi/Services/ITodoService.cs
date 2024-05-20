@@ -5,10 +5,10 @@ namespace TodoApi.Services;
 
 public interface ITodoService
 {
-    TodoTask CreateTodoTask(TaskCreateRequest createTodoRequest);
+    TodoTask CreateTodoTask(CreateTaskRequest todoRequest);
     List<TodoTask> GetTodoTasks();
     TodoTask GetTodoTask(int id);
-    TodoTask UpdateTodoTask(int id, TodoTask todoTask);
+    TodoTask UpdateTodoTask(int id, CreateTaskRequest todoRequest);
     void DeleteTodoTask(int id);
     void CompleteTodoTask(int id);
 }

@@ -1,6 +1,6 @@
 ﻿namespace TodoApi.Models.Dto;
 
-public class TaskCreateRequest
+public class CreateTaskRequest
 {
     public string Title { get; set; }
     public string Description { get; set; }

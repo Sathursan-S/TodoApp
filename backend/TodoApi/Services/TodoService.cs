@@ -16,11 +16,11 @@ public class TodoService : ITodoService
         _mapper = mapper;
     }
     
-    public TodoTask CreateTodoTask(TaskCreateRequest taskCreateRequest)
+    public TodoTask CreateTodoTask(CreateTaskRequest createTaskRequest)
     {
         try
         {
-            TodoTask todoTask = _mapper.Map<TodoTask>(taskCreateRequest);
+            TodoTask todoTask = _mapper.Map<TodoTask>(createTaskRequest);
             return _todoRepository.CreateTodoTask(todoTask);
         }
         catch (Exception e)
@@ -53,10 +53,11 @@ public class TodoService : ITodoService
         }
     }
 
-    public TodoTask UpdateTodoTask(int id, TodoTask todoTask)
+    public TodoTask UpdateTodoTask(int id, CreateTaskRequest todoRequest)
     {
         try
         {
+            TodoTask todoTask = _mapper.Map<TodoTask>(todoRequest);
             return _todoRepository.UpdateTodoTask(id, todoTask);
         }
         catch (Exception e)

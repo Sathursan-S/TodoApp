@@ -30,7 +30,7 @@ public class TodoRepository : ITodoRepository
     {
         try
         {
-            return _context.Tasks.OrderBy(t=>t.CreatedAt).ToList();
+            return _context.Tasks.OrderBy(t=>t.Priority).OrderBy(t=>t.IsCompleted).ToList();
         }
         catch (Exception e)
         {
