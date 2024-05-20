@@ -31,6 +31,9 @@ const TaskForm: React.FC<TaskFormProps> = ({task, isEditing, onUpdateSuccess}) =
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        if (!title) {
+            return;
+        }
         if (isEditing && task) {
             const editedTask: TodoTask = {
                 id: task.id,
@@ -45,6 +48,9 @@ const TaskForm: React.FC<TaskFormProps> = ({task, isEditing, onUpdateSuccess}) =
                     if (onUpdateSuccess) {
                         onUpdateSuccess();
                     }
+                },
+                onError: (error) => {
+                    console.log(error);
                 }
             });
         } else {
@@ -56,9 +62,15 @@ const TaskForm: React.FC<TaskFormProps> = ({task, isEditing, onUpdateSuccess}) =
             createMutation.mutate(newTask,
                 {
                     onSuccess: () => {
+                        if(onUpdateSuccess) {
+                            onUpdateSuccess();
+                        }
                         setTitle('');
                         setDescription('');
                         setPriority(Priority.LOW);
+                    },
+                    onError: (error) => {
+                        console.log(error);
                     }
                 });
         }
