@@ -2,3 +2,4 @@
 .vs/
 backend/TodoApi/obj/Debug/net8.0/TodoApi.AssemblyInfo.cs
 backend/TodoApi/obj/Debug/net8.0/TodoApi.AssemblyInfoInputs.cache
+backend/TodoApi/Database/todoDev.db

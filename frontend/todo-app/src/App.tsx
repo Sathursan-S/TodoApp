@@ -1,6 +1,6 @@
 import TodoList from "./components/TodoList";
 import AddTaskButton from "./components/AddTaskButton.tsx";
-import { Toaster } from 'react-hot-toast';
+import {Toaster} from 'react-hot-toast';
 
 const App: React.FC = () => {
     return (
@@ -8,12 +8,14 @@ const App: React.FC = () => {
             <Toaster
                 position="top-center"
                 reverseOrder={false}
+                toastOptions={{duration: 2000,
+                success: {duration: 1500}}}
             />
             <h1 className="text-4xl font-bold mb-8 text-center">Todo App</h1>
             <div className="mb-4 flex justify-center">
-                <AddTaskButton />
+                <AddTaskButton/>
             </div>
-            <TodoList />
+            <TodoList/>
         </div>
     );
 };
