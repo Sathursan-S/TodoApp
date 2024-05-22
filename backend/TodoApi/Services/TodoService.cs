@@ -25,7 +25,7 @@ public class TodoService : ITodoService
         }
         catch (Exception e)
         {
-            throw new Exception("Error creating task" + e.Message);
+            throw new Exception( e.Message);
         }
     }
 
@@ -37,7 +37,7 @@ public class TodoService : ITodoService
         }
         catch (Exception e)
         {
-            throw new Exception("Error getting all tasks" + e.Message);
+            throw new Exception( e.Message);
         }
     }
 
@@ -49,7 +49,7 @@ public class TodoService : ITodoService
         }
         catch (Exception e)
         {
-            throw new Exception("Error getting task" + e.Message);
+            throw new Exception(e.Message);
         }
     }
 
@@ -62,7 +62,7 @@ public class TodoService : ITodoService
         }
         catch (Exception e)
         {
-            throw new Exception("Error updating task" + e.Message);
+            throw new Exception( e.Message);
         }
     }
 
@@ -74,7 +74,7 @@ public class TodoService : ITodoService
         }
         catch (Exception e)
         {
-            throw new Exception("Error deleting task" + e.Message);
+            throw new Exception( e.Message);
         }
     }
     
@@ -88,7 +88,7 @@ public class TodoService : ITodoService
         }
         catch (Exception e)
         {
-            throw new Exception("Error completing task" + e.Message);
+            throw new Exception( e.Message);
         }
     }
 }

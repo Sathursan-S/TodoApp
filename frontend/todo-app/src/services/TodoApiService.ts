@@ -1,6 +1,7 @@
-import axios from "axios";
+import axios, {AxiosError} from "axios";
 import {useQuery, useMutation, useQueryClient} from 'react-query';
 import {mapTodoTaskToTodoCreateRequest, TodoCreateRequest, TodoTask} from "../types/Todo";
+import {toast} from "react-hot-toast";
 
 const api = axios.create({baseURL: 'http://localhost:5053/api/v1'});
 
@@ -8,7 +9,6 @@ export const createTodoTask = async (todoTask: TodoCreateRequest): Promise<TodoT
     const response = await api.post<TodoTask>('/Todo', todoTask);
     return response.data;
 }
-
 export const getTodoTasks = async (): Promise<TodoTask[]> => {
     const response = await api.get<TodoTask[]>('/Todo');
     return response.data;
@@ -32,12 +32,21 @@ export const useCreateTodoTask = () => {
     return useMutation(createTodoTask, {
         onSuccess: () => {
             queryClient.invalidateQueries('todos');
+            toast.success('Task created successfully');
         },
+        onError: (error: AxiosError) => {
+            console.error(error);
+            toast.error('Failed to create task \n' + error.response?.data);
+        }
     });
 };
 
 export const useGetTodoTasks = () => {
-    return useQuery('todos', getTodoTasks);
+    return useQuery('todos', getTodoTasks,{
+        onError: (error: AxiosError) => {
+            toast.error('Failed to fetch tasks \n' + error.response?.data);
+        }
+    });
 };
 
 export const useUpdateTodoTask = () => {
@@ -45,7 +54,12 @@ export const useUpdateTodoTask = () => {
     return useMutation(updateTodoTask, {
         onSuccess: () => {
             queryClient.invalidateQueries('todos');
+            toast.success('Task updated successfully');
         },
+        onError: (error : AxiosError) => {
+            console.error(error);
+            toast.error('Failed to update task \n' + error.response?.data);
+        }
     });
 };
 
@@ -54,9 +68,11 @@ export const useDeleteTodoTask = () => {
     return useMutation(deleteTodoTask, {
         onSuccess: () => {
             queryClient.invalidateQueries('todos');
+            toast.success('Task deleted successfully');
         },
-        onError: (error) => {
+        onError: (error: AxiosError) => {
             console.error(error);
+            toast.error('Failed to delete task \n' + error.response?.data);
         }
     });
 };
@@ -66,9 +82,11 @@ export const useCompleteTodoTask = () => {
     return useMutation(completeTodoTask, {
         onSuccess: () => {
             queryClient.invalidateQueries('todos');
+            toast.success('Task completed successfully');
         },
-        onError: (error) => {
+        onError: (error: AxiosError) => {
             console.error(error);
+            toast.error('Failed to complete task \n' + error.response?.data);
         }
     });
 };

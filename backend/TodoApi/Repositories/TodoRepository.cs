@@ -6,7 +6,7 @@ namespace TodoApi.Repositories;
 public class TodoRepository : ITodoRepository
 {
     private readonly TodoDbContext _context;
-    
+
     public TodoRepository(TodoDbContext context)
     {
         _context = context;
@@ -14,11 +14,18 @@ public class TodoRepository : ITodoRepository
 
     public TodoTask CreateTodoTask(TodoTask todoTask)
     {
-        try 
+        try
         {
-            _context.Tasks.Add(todoTask);
-            _context.SaveChanges();
-            return todoTask;
+            if (_context.Tasks.Any(t => t.Title == todoTask.Title))
+            {
+                throw new Exception("Title already exists");
+            }
+            else
+            {
+                _context.Tasks.Add(todoTask);
+                _context.SaveChanges();
+                return todoTask;
+            }
         }
         catch (Exception e)
         {
@@ -30,10 +37,14 @@ public class TodoRepository : ITodoRepository
     {
         try
         {
-            return _context.Tasks.OrderBy(t => t.IsCompleted )
-                                    .ThenByDescending(t => t.Priority)
-                                    .ThenBy(t => t.CreatedAt)
-                                    .ToList();
+            if (!_context.Tasks.Any())
+            {
+                throw new Exception("No tasks found");
+            }
+            return _context.Tasks.OrderBy(t => t.IsCompleted)
+                .ThenByDescending(t => t.Priority)
+                .ThenBy(t => t.CreatedAt)
+                .ToList();
         }
         catch (Exception e)
         {
@@ -48,6 +59,7 @@ public class TodoRepository : ITodoRepository
         {
             throw new Exception("Task not found");
         }
+
         return todoTask;
     }
 
@@ -58,6 +70,7 @@ public class TodoRepository : ITodoRepository
         {
             throw new Exception("Task not found");
         }
+
         task.Title = todoTask.Title;
         task.Description = todoTask.Description;
         task.IsCompleted = todoTask.IsCompleted;
@@ -73,7 +86,8 @@ public class TodoRepository : ITodoRepository
         {
             throw new Exception("Task not found");
         }
-        try 
+
+        try
         {
             _context.Tasks.Remove(task);
             _context.SaveChanges();
