@@ -1,5 +1,5 @@
 pipeline {
-   agent any
+    agent any
 
     stages {
         stage('Checkout') {
@@ -9,23 +9,23 @@ pipeline {
             }
         }
 
-        // stage('Build Backend') {
-        //     steps {
-        //         script {
-        //             // Navigate to the backend directory and build the Docker image
-        //             dir('backend/TodoApi') {
-        //                 sh 'docker build -t todo-backend .'
-        //             }
-        //         }
-        //     }
-        // }
+        stage('Build Backend') {
+            steps {
+                script {
+                    // Navigate to the backend directory and build the Docker image
+                    dir('backend/TodoApi') {
+                        bat 'docker build -t todo-backend .'
+                    }
+                }
+            }
+        }
 
         stage('Build Frontend') {
             steps {
                 script {
                     // Navigate to the frontend directory and build the Docker image
                     dir('frontend/todo-app') {
-                        sh 'docker build -t todo-frontend .'
+                        bat 'docker build -t todo-frontend .'
                     }
                 }
             }
@@ -35,8 +35,8 @@ pipeline {
             steps {
                 script {
                     // Deploy the Docker Compose application
-                    sh 'docker-compose down'
-                    sh 'docker-compose up -d'
+                    bat 'docker-compose down'
+                    bat 'docker-compose up -d'
                 }
             }
         }
@@ -45,7 +45,7 @@ pipeline {
     post {
         always {
             // Clean up Docker resources
-            sh 'docker system prune -f'
+            bat 'docker system prune -f'
         }
         success {
             // Notify on successful build
