@@ -9,16 +9,16 @@ pipeline {
             }
         }
 
-        stage('Build Backend') {
-            steps {
-                script {
-                    // Navigate to the backend directory and build the Docker image
-                    dir('backend/TodoApi') {
-                        sh 'docker build -t todo-backend .'
-                    }
-                }
-            }
-        }
+        // stage('Build Backend') {
+        //     steps {
+        //         script {
+        //             // Navigate to the backend directory and build the Docker image
+        //             dir('backend/TodoApi') {
+        //                 sh 'docker build -t todo-backend .'
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('Build Frontend') {
             steps {
