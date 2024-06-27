@@ -1,25 +1,25 @@
 # Use the official .NET SDK image to build and publish the application
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/nightly/sdk:8.0 AS build
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /src
 
 # Copy the project files
 COPY *.csproj ./
-RUN dotnet restore
+RUN dotnet restore "TodoApi.csproj"
 
 # Copy the remaining source code and build the application
 COPY . .
-RUN dotnet publish -c Release -o out
+RUN dotnet publish "TodoApi.csproj" -c Release -o /publish
 
 # Use the official ASP.NET Core runtime image to run the application
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 
 # Set the working directory
 WORKDIR /app
 
 # Copy the published application from the build stage
-COPY --from=build /app/out .
+COPY --from=build /publish .
 
 # Expose the port that the application runs on
 EXPOSE 5053
