@@ -4,6 +4,8 @@ FROM mcr.microsoft.com/dotnet/nightly/sdk:8.0 AS build
 # Set the working directory
 WORKDIR /src
 
+COPY bin .
+
 # Copy the project files
 COPY *.csproj ./
 RUN dotnet restore "TodoApi.csproj"
