@@ -9,27 +9,27 @@ pipeline {
             }
         }
 
-                stage('Build Frontend') {
-            steps {
-                script {
-                    // Navigate to the frontend directory and build the Docker image
-                    dir('frontend/todo-app') {
-                        bat 'docker build -t todo-frontend .'
-                    }
-                }
-            }
-        }
+        //         stage('Build Frontend') {
+        //     steps {
+        //         script {
+        //             // Navigate to the frontend directory and build the Docker image
+        //             dir('frontend/todo-app') {
+        //                 bat 'docker build -t todo-frontend .'
+        //             }
+        //         }
+        //     }
+        // }
 
-        stage('Build Backend') {
-            steps {
-                script {
-                    // Navigate to the backend directory and build the Docker image
-                    dir('backend/TodoApi') {
-                        bat 'docker build -t todo-backend .'
-                    }
-                }
-            }
-        }
+        // stage('Build Backend') {
+        //     steps {
+        //         script {
+        //             // Navigate to the backend directory and build the Docker image
+        //             dir('backend/TodoApi') {
+        //                 bat 'docker build -t todo-backend .'
+        //             }
+        //         }
+        //     }
+        // }
 
         stage('Deploy') {
             steps {
