@@ -36,7 +36,7 @@ export const useCreateTodoTask = () => {
         },
         onError: (error: AxiosError) => {
             console.error(error);
-            toast.error('Failed to create task \n' + error.response?.data);
+            toast.error(`Failed to create task \n${error.response?.data}`);
         }
     });
 };
@@ -44,7 +44,7 @@ export const useCreateTodoTask = () => {
 export const useGetTodoTasks = () => {
     return useQuery('todos', getTodoTasks,{
         onError: (error: AxiosError) => {
-            toast.error('Failed to fetch tasks \n' + error.response?.data);
+            toast.error(`Failed to fetch tasks \n${error.response?.data}`);
         }
     });
 };
@@ -58,7 +58,7 @@ export const useUpdateTodoTask = () => {
         },
         onError: (error : AxiosError) => {
             console.error(error);
-            toast.error('Failed to update task \n' + error.response?.data);
+            toast.error(`Failed to update task \n${error.response?.data}`);
         }
     });
 };
@@ -72,7 +72,7 @@ export const useDeleteTodoTask = () => {
         },
         onError: (error: AxiosError) => {
             console.error(error);
-            toast.error('Failed to delete task \n' + error.response?.data);
+            toast.error(`Failed to delete task \n${error.response?.data}`);
         }
     });
 };
@@ -86,7 +86,7 @@ export const useCompleteTodoTask = () => {
         },
         onError: (error: AxiosError) => {
             console.error(error);
-            toast.error('Failed to complete task \n' + error.response?.data);
+            toast.error(`Failed to complete task \n${error.response?.data}`);
         }
     });
 };

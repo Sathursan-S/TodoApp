@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  backend:
+    image: todoapp/backend
+    build:
+      context: ./backend/TodoApi
+      dockerfile: Dockerfile
+    ports:
+      - "5053:5053"
+    # depends_on:
+    #   - sqlite
+
+  frontend:
+    image: todoapp/frontend
+    build:
+      context: ./frontend/todo-app
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+
+  # sqlite:
+  #   image: nouchka/sqlite3
+  #   volumes:
+  #     - ./backend/TodoApi/todoDev.db:/todoDev.db
