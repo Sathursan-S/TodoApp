@@ -1,6 +1,6 @@
-import axios, {AxiosError} from "axios";
+import axios, {type AxiosError} from "axios";
 import {useQuery, useMutation, useQueryClient} from 'react-query';
-import {mapTodoTaskToTodoCreateRequest, TodoCreateRequest, TodoTask} from "../types/Todo";
+import {mapTodoTaskToTodoCreateRequest, type TodoCreateRequest, type TodoTask} from "../types/Todo";
 import {toast} from "react-hot-toast";
 
 const api = axios.create({baseURL: 'http://localhost:5053/api/v1'});
