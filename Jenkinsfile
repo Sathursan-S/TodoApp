@@ -46,9 +46,7 @@ pipeline {
 
         success {
             // Notify on successful build
-            echo 'Build and deployment successful! Access the frontend at http://localhost:3000'
-            // Open the URL in the default web browser
-            bat 'start http://localhost:3000/'
+            echo 'Build and deployment successful!'
         }
         failure {
             // Notify on failed build
