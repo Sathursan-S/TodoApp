@@ -9,30 +9,31 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
-  "proxy": {
-    "/api/": "process.env.PROXY_API || http://localhost:8080/"
-  },
   "dependencies": {
+    "@types/http-proxy-middleware": "^1.0.0",
+    "@types/node": "^20.14.9",
     "axios": "^1.6.8",
+    "http-proxy-middleware": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.2.1",
     "react-query": "^3.39.3",
-    "tailwindcss": "^3.4.4"
+    "tailwindcss": "^3.4.4",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
-    "esbuild": "0.21.5",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
+    "esbuild": "^0.21.5",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
-    "typescript": "^5.2.2",
+    "typescript": "^5.5.2",
     "vite": "^5.2.0"
   }
 }

@@ -10,6 +10,12 @@ export default defineConfig({
   strictPort: true,
  },
  server: {
+   proxy: {
+      '/base': {
+        target: process.env.PROXY_API || 'http://localhost:5053',
+        changeOrigin: true,
+      },
+    },
   port: 8080,
   strictPort: true,
   host: true,

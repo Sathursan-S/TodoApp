@@ -6,6 +6,7 @@ import { TodoTask } from '../types/Todo.ts';
 
 const TodoList: React.FC = () => {
   const { data: todos, isLoading, isError } = useGetTodoTasks();
+  console.log(todos);
 
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error loading todos</div>;
