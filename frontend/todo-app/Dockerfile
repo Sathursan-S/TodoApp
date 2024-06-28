@@ -15,4 +15,7 @@ RUN npm run build
 
 EXPOSE 3000
 
+# Set the base url
+ENV PROXY_API=$PROXY_API
+
 CMD [ "serve", "-s", "dist" ]

@@ -49,9 +49,7 @@ const TaskForm: React.FC<TaskFormProps> = ({task, isEditing, onUpdateSuccess}) =
                         onUpdateSuccess();
                     }
                 },
-                onError: (error) => {
-                    console.log(error);
-                }
+
             });
         } else {
             const newTask: TodoCreateRequest = {
@@ -69,9 +67,7 @@ const TaskForm: React.FC<TaskFormProps> = ({task, isEditing, onUpdateSuccess}) =
                         setDescription('');
                         setPriority(Priority.LOW);
                     },
-                    onError: (error) => {
-                        console.log(error);
-                    }
+
                 });
         }
     };
