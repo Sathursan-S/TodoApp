@@ -27,4 +27,8 @@ COPY --from=build /publish .
 EXPOSE 5053
 
 # Define the entry point for the container
+<<<<<<< HEAD
 ENTRYPOINT ["dotnet", "TodoApi.dll"]
+=======
+ENTRYPOINT ["dotnet", "TodoApi.dll"]
+>>>>>>> 7640ad0cd971cdd26fe0b84ee320c4fee2b4e70f

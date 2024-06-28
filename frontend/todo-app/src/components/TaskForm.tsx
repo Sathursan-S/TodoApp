@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import type React from 'react';
+import {useState} from 'react';
 import {FaArrowDown, FaExclamation, FaArrowUp} from 'react-icons/fa';
-import {TodoCreateRequest, Priority, TodoTask} from '../types/Todo';
+import {type TodoCreateRequest, Priority, type TodoTask} from '../types/Todo';
 import {useCreateTodoTask, useUpdateTodoTask} from "../services/TodoApiService.ts";
+import type { AxiosError } from 'axios';
 
 interface TaskFormProps {
     task?: TodoTask;
@@ -49,7 +51,7 @@ const TaskForm: React.FC<TaskFormProps> = ({task, isEditing, onUpdateSuccess}) =
                         onUpdateSuccess();
                     }
                 },
-                onError: (error) => {
+                onError: (error: AxiosError) => {
                     console.log(error);
                 }
             });
@@ -69,7 +71,7 @@ const TaskForm: React.FC<TaskFormProps> = ({task, isEditing, onUpdateSuccess}) =
                         setDescription('');
                         setPriority(Priority.LOW);
                     },
-                    onError: (error) => {
+                    onError: (error: Error) => {
                         console.log(error);
                     }
                 });
