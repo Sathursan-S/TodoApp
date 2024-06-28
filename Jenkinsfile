@@ -36,7 +36,7 @@ pipeline {
                 script {
                     // Deploy the Docker Compose application
                    
-                    bat 'docker-compose up --build'
+                    bat 'docker-compose up --build -d'
                 }
             }
         }
