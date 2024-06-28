@@ -4,7 +4,6 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout the source code from your version control system
                 checkout scm
             }
         }
@@ -12,7 +11,6 @@ pipeline {
         //         stage('Build Frontend') {
         //     steps {
         //         script {
-        //             // Navigate to the frontend directory and build the Docker image
         //             dir('frontend/todo-app') {
         //                 bat 'docker build -t todo-frontend .'
         //             }
@@ -23,7 +21,6 @@ pipeline {
         // stage('Build Backend') {
         //     steps {
         //         script {
-        //             // Navigate to the backend directory and build the Docker image
         //             dir('backend/TodoApi') {
         //                 bat 'docker build -t todo-backend .'
         //             }
@@ -34,7 +31,6 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Deploy the Docker Compose application
                    
                     bat 'docker-compose up --build -d'
                 }
@@ -44,12 +40,10 @@ pipeline {
 
     post {
 
-        success {
-            // Notify on successful build
+        success 
             echo 'Build and deployment successful!'
         }
         failure {
-            // Notify on failed build
             echo 'Build or deployment failed!'
         }
     }
