@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-// import {toast} from "react-hot-toast";
+import {toast} from "react-hot-toast";
 import {FaEdit, FaTrash, FaArrowDown, FaExclamation, FaArrowUp} from 'react-icons/fa';
 import {TodoItemProps, Priority} from '../types/Todo';
 import {
@@ -20,41 +20,37 @@ const TodoItem: React.FC<TodoItemProps> = ({todo}) => {
     };
 
     const handleDelete = () => {
-            const isConfirmed = window.confirm("Are you sure you want to delete this task?");
-    if (isConfirmed) {
-      deleteMutation.mutate(todo.id);
-    }
-        // toast.custom((t: Toast) => (
-        //     <div className="max-w-md w-full bg-white shadow-lg rounded-lg
-        //     pointer-events-auto flex flex-col ring-1 ring-black ring-opacity-5">
-        //         <div className="flex  p-4">
-        //             <p className="text-sm font-medium text-gray-900">
-        //                 <strong>Are you sure you want to delete this task?</strong>
-        //             </p>
-        //         </div>
-        //         <div className="flex border-t border-gray-200">
-        //             <button
-        //                 onClick={() => {
-        //                     deleteMutation.mutate(todo.id);
-        //                     toast.dismiss(t.id);
-        //                 }}
-        //                 className="w-full border border-transparent rounded-none p-4
-        //                 flex items-center justify-center text-sm font-medium text-red-600 hover:text-red-500
-        //                 focus:outline-none focus:ring-2 focus:ring-red-500"
-        //             >
-        //                 Confirm
-        //             </button>
-        //             <button
-        //                 onClick={() => toast.dismiss(t.id)}
-        //                 className="w-full border border-transparent rounded-none p-4
-        //                 flex items-center justify-center text-sm font-medium text-indigo-600
-        //                 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-        //             >
-        //                 Cancel
-        //             </button>
-        //         </div>
-        //     </div>
-        // ),{position: "top-center"});
+        toast.custom((t) => (
+            <div className="max-w-md w-full bg-white shadow-lg rounded-lg
+            pointer-events-auto flex flex-col ring-1 ring-black ring-opacity-5">
+                <div className="flex  p-4">
+                    <p className="text-sm font-medium text-gray-900">
+                        <strong>Are you sure you want to delete this task?</strong>
+                    </p>
+                </div>
+                <div className="flex border-t border-gray-200">
+                    <button
+                        onClick={() => {
+                            deleteMutation.mutate(todo.id);
+                            toast.dismiss(t.id);
+                        }}
+                        className="w-full border border-transparent rounded-none p-4
+                        flex items-center justify-center text-sm font-medium text-red-600 hover:text-red-500
+                        focus:outline-none focus:ring-2 focus:ring-red-500"
+                    >
+                        Confirm
+                    </button>
+                    <button
+                        onClick={() => toast.dismiss(t.id)}
+                        className="w-full border border-transparent rounded-none p-4
+                        flex items-center justify-center text-sm font-medium text-indigo-600
+                        hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    >
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        ),{position: "top-center"});
     };
 
     const handleCloseEdit = () => {
