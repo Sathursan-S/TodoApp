@@ -40,7 +40,7 @@ pipeline {
 
     post {
 
-        success 
+        success {
             echo 'Build and deployment successful!'
         }
         failure {
