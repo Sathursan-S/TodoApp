@@ -36,17 +36,14 @@ pipeline {
                 script {
                     // Deploy the Docker Compose application
                    
-                    bat 'docker-compose up -d'
+                    bat 'docker-compose up --build'
                 }
             }
         }
     }
 
     post {
-        always {
-            // Clean up Docker resources
-            bat 'docker system prune -f'
-        }
+
         success {
             // Notify on successful build
             echo 'Build and deployment successful!'
