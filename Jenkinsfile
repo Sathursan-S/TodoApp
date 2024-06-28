@@ -35,7 +35,7 @@ pipeline {
             steps {
                 script {
                     // Deploy the Docker Compose application
-                    bat 'docker-compose down'
+                   
                     bat 'docker-compose up -d'
                 }
             }
