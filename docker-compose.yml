@@ -7,9 +7,13 @@ services:
       context: ./backend/TodoApi
       dockerfile: Dockerfile
     ports:
-      - "8080:5053"
+      - "5053:5053"
     expose:
       - "5053"
+    networks:
+      - todoapp-network
+    environment:
+      - ASPNETCORE_URLS=http://+:5053
     # depends_on:
     #   - sqlite
 
@@ -22,9 +26,17 @@ services:
       NODE_ENV: production
       PROXY_API: http://backend:5053
     ports:
-      - 3000:3000
+      - "3000:3000"
+    networks:
+      - todoapp-network
 
   # sqlite:
   #   image: nouchka/sqlite3
   #   volumes:
   #     - ./backend/TodoApi/todoDev.db:/todoDev.db
+  #   networks:
+  #     - todoapp-network
+
+networks:
+  todoapp-network:
+    driver: bridge
