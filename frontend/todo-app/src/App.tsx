@@ -11,7 +11,7 @@ const App: React.FC = () => {
                 toastOptions={{duration: 2000,
                 success: {duration: 1500}}}
             />
-            <h1 className="text-4xl font-bold mb-8 text-center">Todo App</h1>
+            <h1 className="text-4xl font-bold mb-8 text-center">Todo</h1>
             <div className="mb-4 flex justify-center">
                 <AddTaskButton/>
             </div>
