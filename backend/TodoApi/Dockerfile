@@ -1,16 +1,21 @@
+# Use the .NET SDK to build the application
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build-env
 WORKDIR /App
 
-# Copy everything
+# Copy everything and restore dependencies
 COPY . ./
-# Restore as distinct layers
 RUN dotnet restore
-# Build and publish a release
+
+# Build and publish the application
 RUN dotnet publish -c Release -o out
 
-# Build runtime image
+# Use the .NET runtime for the application
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /App
-COPY --from=build-env /App/*.db .
+
+# Copy the published output and the database file from the build environment
 COPY --from=build-env /App/out .
-ENTRYPOINT ["dotnet", "TodoApi.dll"]
+COPY --from=build-env /App/*.db .
+
+# Apply migrations
+ENTRYPOINT ["sh", "-c", "dotnet TodoApi.dll && dotnet ef database update"]
