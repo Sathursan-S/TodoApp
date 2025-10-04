@@ -13,6 +13,7 @@ This Todo Application allows users to manage their tasks by providing functional
   - [Backend Setup](#backend-setup)
   - [Frontend Setup](#frontend-setup)
 - [Running the Application](#running-the-application)
+- [Testing](#testing)
 - [Version Control](#version-control)
 
 ## Features
@@ -27,6 +28,9 @@ This Todo Application allows users to manage their tasks by providing functional
 
 - **Backend**: C# .NET, Entity Framework, SQLite, Swagger
 - **Frontend**: ReactJS, TypeScript, Vite, Tailwind CSS, React Query
+- **Testing**: 
+  - Backend: xUnit, Moq, Entity Framework InMemory
+  - Frontend: Jest, React Testing Library, Playwright
 - **Version Control**: Git, GitFlow
 
 ## Setup Instructions
@@ -163,6 +167,37 @@ To run the application locally, follow these steps:
    http://localhost:5053/swagger/index.html
    ```
 
+## Testing
+
+The application includes comprehensive tests for both backend and frontend. See [TESTING.md](./TESTING.md) for detailed testing documentation.
+
+### Quick Test Commands
+
+**Backend Tests:**
+```bash
+cd backend/TodoApi.Tests
+dotnet test
+```
+
+**Frontend Unit Tests:**
+```bash
+cd frontend/todo-app
+npm test
+```
+
+**Frontend E2E Tests:**
+```bash
+cd frontend/todo-app
+npx playwright install  # First time only
+npm run test:e2e
+```
+
+### Test Coverage
+
+- **Backend**: 37 tests (11 repository + 12 service + 10 controller + 4 integration)
+- **Frontend**: 3 unit tests + 8 E2E scenarios
+
+For more information, see the [complete testing documentation](./TESTING.md).
 
 ### Version Control
 
